@@ -55,14 +55,14 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-9b. ブラウザ上で管理者画面にログイン(上記のユーザ名とパスワードを入力)
+9b. ブラウザ上で管理者画面にログイン(上記のユーザ名とパスワードを入力)  
 ※利用するユーザが1人の場合は9bと9cの作業の必要性はありません。
 ```
 http://127.0.0.1:8000/admin
 ```
 
-9c. 以下のサイトを参考にユーザ登録
-https://create-it-myself.com/know-how/register-as-user-on-the-django-admin-site/
+9c. 以下のサイトを参考にユーザ登録  
+https://create-it-myself.com/know-how/register-as-user-on-the-django-admin-site/  
 ※「保存」ボタンを押すと詳細設定が開きます。「Permissions」の「Staff status」にチェックをしないと、保存したユーザでログインできません。
 
 10. サイトを開く (サーバ起動したまま)
