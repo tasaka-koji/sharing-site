@@ -1,10 +1,14 @@
 # sharing-site
 ## アプリ内容
-簡単なユーザ投稿型サイトのwebアプリケーションです。まだ開発途中のため、適宜調整していきます。
+簡単なユーザ投稿型サイトのwebアプリケーションです。開発途中のため、適宜調整していきます。
 
 <p align="center">
-  <img src="images/Top.png" alt="ページトップ" height="600px">
-  <br>トップページ
+  <img src="images/Top.png" alt="ページトップ" height="320px">
+  <img src="images/MyPage.png" alt="マイページ" height="320px">
+</p>
+<p align="center">
+  <img src="images/detail.png" alt="投稿記事の詳細画面" height="320px">
+  <img src="images/Post.png" alt="投稿画面" height="320px">
 </p>
 
 ## 実装環境
