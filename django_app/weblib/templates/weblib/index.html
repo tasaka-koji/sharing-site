@@ -1,0 +1,102 @@
+{% extends 'weblib/layout.html' %}
+
+{% block title %}Index{% endblock %}
+
+{% block header %}
+<script>
+function sendGroupForm(page) {
+    document.group_form.action += page;
+    document.group_form.submit();
+}
+</script>
+<!--<h1 class="display-4 text-primary">SNS</h1>-->
+{% if messages %}
+<br>
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} 
+        class="{{ message.tags }}"
+        {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<br>
+<span class="float-left text-info">
+    <h1 class="display-4 text-primary">Top</h1>
+</span>
+<span class="float-right">
+    <table class="table mt"><tr>
+    <form action="{% url 'index' %}" method="post" name="group_form">
+        {% csrf_token %}
+        <td style="border-style:none">{{form.as_p}}</td>
+        <td style="border-style:none"><button class="btn btn-primary">検索</button></td>
+    </form>
+    </tr></table>
+</span>
+
+<table class="table mt-3">
+    <tr>
+        <th>TITLE</th>
+        <th>LINK</th>
+    </tr>
+{% for item in contents %}
+    <tr style="font-size: 85%;">
+        <td>
+            {% if login_user == item.owner %}
+            <b>[MY POST]</b>
+            {% endif %}
+            <a href="{% url 'detail' item.id %}">
+            {{item.title|truncatechars:60}}</a></td>
+        <td><a href={{item.link}} target="_blank" rel="noopener noreferrer">{{item.link|truncatechars:30}}</a></td>
+    </tr>
+{% endfor %}
+</table>
+
+<ul class="pagination justify-content-center">
+    {% if contents.has_previous %}
+    <li class="page-item">
+        <a class="page-link" href="javascript:sendGroupForm(1);">
+            &laquo; first</a>
+    </li>
+    <li class="page-item">
+        <a class="page-link" 
+        href="javascript:sendGroupForm({{contents.previous_page_number}});">
+            &laquo; prev</a>
+    </li>
+    {% else %}
+    <li class="page-item">
+        <a class="page-link">&laquo; first</a>
+    </li>
+    <li class="page-item">
+        <a class="page-link">&laquo; prev</a>
+    </li>
+    {% endif %}
+    <li class="page-item">
+        <a class="page-link">
+        {{contents.number}}/{{contents.paginator.num_pages}}</a>
+    </li>
+    {% if contents.has_next %}
+    <li class="page-item">
+        <a class="page-link" 
+        href="javascript:sendGroupForm({{contents.next_page_number }});">
+            next &raquo;</a>
+    </li>
+    <li class="page-item">
+        <a class="page-link" 
+        href="javascript:sendGroupForm({{contents.paginator.num_pages}});">
+            last &raquo;</a>
+    </li>
+    {% else %}
+    <li class="page-item">
+        <a class="page-link">next &raquo;</a>
+    </li>
+    <li class="page-item">
+        <a class="page-link">last &raquo;</a>
+    </li>
+    {% endif %}
+</ul>
+
+{% endblock %}

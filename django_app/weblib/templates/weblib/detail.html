@@ -1,0 +1,52 @@
+{% extends 'weblib/layout.html' %}
+
+{% block title %}Detail{% endblock %}
+
+{% block header %}
+{% if messages %}
+<br>
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} 
+        class="{{ message.tags }}"
+        {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<br>
+<h1>{{item.title}}</h1>
+<p class="text-right"> リンク <a href={{item.link}} target="_blank" rel="noopener noreferrer">{{item.link| truncatechars:40}}</a><br>
+ 投稿者 ({{item.owner}}) 投稿日時 ({{item.pub_date}}) キーワード ({{item.keyword}})</p>
+{% if login_user == item.owner %}
+<a href="{% url 'edit' item.id %}">編集</a>
+<a href="{% url 'delete' item.id %}">削除</a>
+{% endif %}
+<hr>
+<h2>内容</h2>
+<p>{{item.content | linebreaks}}</p>
+<h2>コメント</h2>
+{% if not comments %}
+<p>コメントは投稿されていません</p>
+{% endif %}
+{% if comments %}
+<ul>
+{% for comment in comments %}
+<li>
+{{comment.content}} [<b>{{comment.owner.username}}</b>, {{comment.pub_date}}]
+{% if comment.owner == login_user %}
+<a href="{% url 'delete_comment' comment.id %}">削除</a>
+{% endif %}
+</li>
+{% endfor %}
+{% endif %}
+</ul>
+<h4>コメントの投稿</h4>
+<form action="{% url 'detail' item.id %}" method="post" name="group_form">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-primary">投稿</button>
+</form>
+{% endblock %}

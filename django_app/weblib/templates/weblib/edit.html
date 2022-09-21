@@ -1,0 +1,17 @@
+{% extends 'weblib/layout.html' %}
+
+{% block title %}Edit{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<br>
+<h1 class="display-4 text-primary">Edit</h1>
+<hr>
+<form action="{% url 'edit' id  %}" method="post">
+{% csrf_token %}
+{{form.as_p}}
+<button class="btn btn-primary">Update</button>
+</form>
+{% endblock %}

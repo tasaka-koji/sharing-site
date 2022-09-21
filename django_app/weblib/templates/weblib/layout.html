@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
+     integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    <!--<link rel="stylesheet" type="text/css" 
+        href="{% static 'weblib/css/style.css' %}" />-->
+</head>
+<body class="container">
+    <nav class="navbar navbar-expand navbar-light bg-light">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">top</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'mypage' %}">mypage</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'post' %}">post</a>
+        </li>
+    </ul>
+    <span>logined: <span class="h6">"{{login_user}}".</span></span>
+    </nav>
+
+    <div>{% block header %}
+        {% endblock %}</div>
+    <div class="content">{% block content %}
+        {% endblock %}</div>
+
+    <hr>
+    <div class="my-3">
+        <span class="font-weight-bold">
+            <a href="/admin/logout?next=/weblib/">
+                [ logout ]</a></span>
+        <span class="float-right">copyright 2020 
+            SYODA-Tuyano.</span>
+    </div>
+</body>
+</html>

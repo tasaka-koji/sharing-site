@@ -1,0 +1,4 @@
+# ignored
+django_app/hello
+django_app/db.sqlite3
+myenv

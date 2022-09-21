@@ -1,0 +1,17 @@
+{% extends 'weblib/layout.html' %}
+
+{% block title %}Post{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<br>
+<h1 class="display-4 text-primary">Post</h1>
+<hr>
+<form action="{% url 'post' %}" method="post">
+{% csrf_token %}
+{{form.as_p}}
+<button class="btn btn-primary">Post!</button>
+</form>
+{% endblock %}

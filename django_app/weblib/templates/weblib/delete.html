@@ -1,0 +1,22 @@
+{% extends 'weblib/layout.html' %}
+
+{% block title %}Delete{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<br>
+<h1 class="display-4 text-primary">Delete</h1>
+<hr>
+<h1>{{item.title}}</h1>
+<p class="text-right"> リンク <a href={{item.link}} target="_blank" rel="noopener noreferrer">{{item.link| truncatechars:40}}</a><br>
+ 投稿者 ({{item.owner}}) 投稿日時 ({{item.pub_date}}) キーワード ({{item.keyword}})</p>
+<hr>
+<h2>内容</h2>
+<p>{{item.content}}</p>
+<form action="{% url 'delete' id  %}" method="post">
+{% csrf_token %}
+<button class="btn btn-primary">Delete</button>
+</form>
+{% endblock %}
