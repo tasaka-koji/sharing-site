@@ -2,6 +2,11 @@
 ## アプリ内容
 簡単なユーザ投稿型サイトのwebアプリケーションです。まだ開発途中のため、適宜調整していきます。
 
+<p align="center">
+  <img src="images/Top.png" alt="ページトップ" height="600px">
+  <br>トップページ
+</p>
+
 ## 実装環境
 * Ubuntu 22.04.1 LTS
 * Python 3.10.4
