@@ -19,7 +19,5 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('hello/', hello.index),<-あまりよろしくない, 別のアプリのurlの管理はそのアプリ内のurls.pyで管理すべき
-    path('hello/', include('hello.urls')),
     path('weblib/', include('weblib.urls')),
 ]
